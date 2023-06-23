@@ -2,9 +2,9 @@
 
 A server-side only fabric mod that provide information about beehives and bees.  
 
-This is a Fabric mod, ![Fabric API](https://modrinth.com/mod/fabric-api) is required.
+This is a Fabric mod, [Fabric API](https://modrinth.com/mod/fabric-api) is required.
 
-Recommend to use along with ![MoreBeeInfo](https://modrinth.com/mod/morebeeinfo).
+Recommend to use along with [MoreBeeInfo](https://modrinth.com/mod/morebeeinfo).
 
 ## Main feature
 
