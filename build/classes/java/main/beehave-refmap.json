@@ -1,0 +1,26 @@
+{
+  "mappings": {
+    "cool/muyucloud/beehave/mixin/AnimalEntityMixin": {
+      "interactMob": "Lnet/minecraft/class_1429;method_5992(Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;"
+    },
+    "cool/muyucloud/beehave/mixin/BeeEntityAccessor": {
+      "doesHiveHaveSpace": "method_23988(Lnet/minecraft/class_2338;)Z"
+    },
+    "cool/muyucloud/beehave/mixin/BeehiveBlockMixin": {
+      "onUse": "Lnet/minecraft/class_4481;method_9534(Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Lnet/minecraft/class_1269;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "cool/muyucloud/beehave/mixin/AnimalEntityMixin": {
+        "interactMob": "Lnet/minecraft/class_1429;method_5992(Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;"
+      },
+      "cool/muyucloud/beehave/mixin/BeeEntityAccessor": {
+        "doesHiveHaveSpace": "method_23988(Lnet/minecraft/class_2338;)Z"
+      },
+      "cool/muyucloud/beehave/mixin/BeehiveBlockMixin": {
+        "onUse": "Lnet/minecraft/class_4481;method_9534(Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Lnet/minecraft/class_1269;"
+      }
+    }
+  }
+}
