@@ -5,7 +5,7 @@ This is a Fabric mod, [Fabric API](https://modrinth.com/mod/fabric-api) is requi
 
 Recommend to use along with [MoreBeeInfo](https://modrinth.com/mod/morebeeinfo).
 
-Thank strrraicato_ for the name "Beehave" provided by them.
+Thank [strrraicato_](https://space.bilibili.com/314823790) for the name "Beehave" provided by them.
 
 ## Main feature
 
