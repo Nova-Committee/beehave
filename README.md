@@ -23,6 +23,4 @@ if the player is holding items that got other functions.
 ## Plans
 
 - Add blacklist & whitelist that limits the items held by players to display the information
-- Read custom name NBT in BeehiveBlockEntity so that a bee's custom name can be displayed
-- Configurations and commands for language switch
 - More language support

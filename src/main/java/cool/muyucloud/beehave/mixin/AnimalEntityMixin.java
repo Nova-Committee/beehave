@@ -1,5 +1,7 @@
 package cool.muyucloud.beehave.mixin;
 
+import cool.muyucloud.beehave.Beehave;
+import cool.muyucloud.beehave.config.Config;
 import cool.muyucloud.beehave.util.TranslatorManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -19,7 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AnimalEntity.class)
 public abstract class AnimalEntityMixin extends PassiveEntity {
-    private static final TranslatorManager TRANSLATOR = TranslatorManager.INSTANCE;
+    private static final TranslatorManager TRANSLATOR = Beehave.TRANSLATOR;
+    private static final Config CONFIG = Beehave.CONFIG;
 
     protected AnimalEntityMixin(EntityType<? extends PassiveEntity> entityType, World world) {
         super(entityType, world);
@@ -27,7 +30,11 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
 
     @Inject(method = "interactMob", at = @At("RETURN"))
     public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        boolean holdBreedingItem = (((AnimalEntity) (Object) this)).isBreedingItem(player.getStackInHand(hand));
+        boolean enable = CONFIG.getAsBoolean("bee");
+        if (!enable) {
+            return;
+        }
+        boolean holdBreedingItem = ((AnimalEntity) (Object) this).isBreedingItem(player.getStackInHand(hand));
         if (this.getWorld().isClient || hand.equals(Hand.OFF_HAND) || holdBreedingItem) {
             return;
         }

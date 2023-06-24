@@ -1,56 +1,58 @@
 package cool.muyucloud.beehave.util;
 
+import com.google.gson.JsonPrimitive;
 import cool.muyucloud.beehave.Beehave;
+import cool.muyucloud.beehave.config.Config;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class TranslatorManager {
-    public static final TranslatorManager INSTANCE = new TranslatorManager();
-    private static final Logger LOGGER = Beehave.LOGGER;
+    public static final Config CONFIG = Beehave.CONFIG;
 
     private final HashMap<String, Translator> translators = new HashMap<>();
-    private String currentLang = "en_us";
     private Translator translator;
+    private Translator defaultTranslator;
 
     public TranslatorManager(String... langNames) {
-        this.translator = new Translator("en_us");
-        this.translators.put("en_us", this.translator);
         for (String langName : langNames) {
-            if (Objects.equals(langName, "en_us")) {
-                continue;
-            }
             Translator t = new Translator(langName);
             if (t.isBad()) {
                 continue;
             }
             this.translators.put(langName, t);
         }
+        this.initDefault();
+        this.updateLang();
+    }
+
+    private void initDefault() {
+        Translator t = this.translators.get("en_us");
+        if (t == null) {
+            t = new Translator("en_us");
+            this.translators.put("en_us", t);
+        }
+        this.defaultTranslator = t;
+        this.translator = t;
     }
 
     public String getCurrentLang() {
-        return currentLang;
-    }
-
-    public void setCurrentLang(String currentLang) {
-        if (this.translators.containsKey(currentLang)) {
-            this.currentLang = currentLang;
-            this.translator = translators.get(currentLang);
-        } else {
-            LOGGER.warn("Target language is not loaded");
-        }
-    }
-
-    public List<String> validLangs() {
-        return this.translators.keySet().stream().toList();
+        return this.translator.getLangName();
     }
 
     public MutableText translate(String key, Object... args) {
+        this.updateLang();
         return this.translator.translate(key, args);
+    }
+
+    private void updateLang() {
+        String loaded = this.translator.getLangName();
+        String current = CONFIG.getAsString("lang");
+        if (!Objects.equals(loaded, current)) {
+            Translator t = this.translators.get(current);
+            this.translator = t == null ? defaultTranslator : t;
+            CONFIG.set("lang", new JsonPrimitive(this.getCurrentLang()));
+        }
     }
 }
