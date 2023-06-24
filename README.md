@@ -13,9 +13,11 @@ bees' information will be printed into chat HUD.
 Including: bees' count, is a bee adult or baby,
 how many ticks has a bee stayed in the hive,
 and how many ticks in total need to be occupied before leave the hive.
+![](https://cdn-raw.modrinth.com/data/e0YVwkW5/images/49bcad6da7d3c05e070e416c277e14982ad54a61.png)
 - Right-click on a bee entity, bee's information will be printed into chat HUD.
 If the bee got a hive to enter, position of the hive will be displayed;
 if not, the bee will be marked "Homeless"
+![](https://cdn-raw.modrinth.com/data/e0YVwkW5/images/2956e8851b0db469131875c78ae62080abcd45cd.png)
 
 All the operation above will be automatically filtered
 if the player is holding items that got other functions.
