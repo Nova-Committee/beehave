@@ -5,10 +5,10 @@
   "message.chat.bee.info": "蜂巢在 [x=%d, y=%d, z=%d]",
   "message.chat.bee.homeless": "没有可进入的蜂巢",
   "message.command.beehave.title": "Beehave 设置概览",
-  "message.command.beehave.info.bee": "启用右键蜜蜂显示信息",
-  "message.command.beehave.info.beehive": "启用右键蜂巢显示信息",
-  "message.command.beehave.property.set.success": "成功将 %s 设置为 %s",
-  "message.command.beehave.property.set.failure": "未能将 %s 设置为 %s",
-  "message.command.beehave.property.get.success": "%s 的值为 %s",
-  "message.command.beehave.property.get.failure": "无法查询设置项 %s"
+  "message.command.beehave.info.bee": "[右键蜜蜂显示信息]",
+  "message.command.beehave.info.beehive": "[右键蜂巢显示信息]",
+  "message.command.beehave.action.enable": "已禁用，点击以启用",
+  "message.command.beehave.action.disable": "已启用，点击以禁用",
+  "message.command.beehave.status.enabled": "%s 已启用！",
+  "message.command.beehave.status.disabled": "%s 已禁用！"
 }

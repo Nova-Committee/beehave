@@ -5,10 +5,10 @@
   "message.chat.bee.info": "Hive at [x=%d, y=%d, z=%d]",
   "message.chat.bee.homeless": "Homeless",
   "message.command.beehave.title": "Beehave settings overview",
-  "message.command.beehave.info.bee": "Enable information display when right-click on bees",
-  "message.command.beehave.info.beehive": "Enable information display when right-click on beehives",
-  "message.command.beehave.property.set.success": "Successfully set %s to %s",
-  "message.command.beehave.property.set.failure": "Failed to set %s to %s",
-  "message.command.beehave.property.get.success": "Value of %s is %s",
-  "message.command.beehave.property.get.failure": "Failed to query property %s"
+  "message.command.beehave.info.bee": "[Information display when right-click on bees]",
+  "message.command.beehave.info.beehive": "[Information display when right-click on beehives]",
+  "message.command.beehave.action.enable": "Disabled, click to enable",
+  "message.command.beehave.action.disable": "Enabled, click to disable",
+  "message.command.beehave.status.enabled": "%s Enabled!",
+  "message.command.beehave.status.disabled": "%s Disabled!"
 }

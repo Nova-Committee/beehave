@@ -2,14 +2,16 @@ package committee.nova.beehave.event.handler;
 
 import committee.nova.beehave.Beehave;
 import committee.nova.beehave.util.Utilities;
+import net.minecraft.commands.Commands;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -47,10 +49,46 @@ public class ForgeEventHandler {
         });
     }
 
-    //@SubscribeEvent
-    //public static void onRegisterCmd(RegisterCommandsEvent e) {
-    //    e.getDispatcher().register(Commands.literal("beehave")
-    //            .executes()
-    //            .requires(p -> p.hasPermission(p.getServer().getOperatorUserPermissionLevel())));
-    //}
+    @SubscribeEvent
+    public static void onRegisterCmd(RegisterCommandsEvent e) {
+        e.getDispatcher().register(Commands.literal("beehave")
+                .executes(ctx -> {
+                    final MutableComponent text = Component.translatable("message.command.beehave.title")
+                            .append("\n")
+                            .append(Component.translatable("message.command.beehave.info.bee")
+                                    .setStyle(Style.EMPTY
+                                            .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/beehave beeinfo"))
+                                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                                                    Component.translatable("message.command.beehave.action." + (Beehave.bee.get() ? "disable" : "enable"))))))
+                            .append("\n")
+                            .append(Component.translatable("message.command.beehave.info.beehive")
+                                    .setStyle(Style.EMPTY
+                                            .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/beehave beehiveinfo"))
+                                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                                                    Component.translatable("message.command.beehave.action." + (Beehave.bee.get() ? "disable" : "enable"))))));
+                    ctx.getSource().sendSuccess(() -> text, false);
+                    return 1;
+                })
+                .then(Commands.literal("beeinfo")
+                        .executes(ctx -> {
+                            Beehave.bee.set(!Beehave.bee.get());
+                            Beehave.CFG.save();
+                            ctx.getSource().sendSuccess(() -> Component.translatable("message.command.beehave.status." +
+                                            (Beehave.bee.get() ? "enabled" : "disabled"),
+                                    Component.translatable("message.command.beehave.info.bee")), false);
+                            return 1;
+                        })
+                        .requires(p -> p.hasPermission(p.getServer().getOperatorUserPermissionLevel())))
+                .then(Commands.literal("beehiveinfo")
+                        .executes(ctx -> {
+                            Beehave.beehive.set(!Beehave.beehive.get());
+                            Beehave.CFG.save();
+                            ctx.getSource().sendSuccess(() -> Component.translatable("message.command.beehave.status." +
+                                            (Beehave.beehive.get() ? "enabled" : "disabled"),
+                                    Component.translatable("message.command.beehave.info.bee")), false);
+                            return 1;
+                        })
+                        .requires(p -> p.hasPermission(p.getServer().getOperatorUserPermissionLevel())))
+                .requires(p -> p.hasPermission(p.getServer().getOperatorUserPermissionLevel())));
+    }
 }
