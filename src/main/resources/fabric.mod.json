@@ -4,7 +4,11 @@
   "version": "${version}",
   "name": "beehave",
   "description": "",
-  "authors": [],
+  "authors": [
+    "MUYU_Twilighter",
+    "Mikhail Tapio",
+    "Nova Committee"
+  ],
   "contact": {
     "repo": "https://github.com/MUYU_Twilighter/beehave"
   },
