@@ -1,0 +1,13 @@
+modLoader = "javafml"
+loaderVersion = "[46,)"
+license = "All Rights Reserved"
+[[mods]]
+modId = "beehave"
+version = "${file.jarVersion}"
+displayName = "Beehave"
+logoFile = "assets/beehave/icon.png"
+authors = [
+    "MUYU_Twilighter",
+    "Tapio"
+]
+description = ""
