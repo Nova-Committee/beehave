@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -49,10 +50,10 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
         }
         BeehiveBlockEntity be = (BeehiveBlockEntity) world.getBlockEntity(pos);
         if (be == null || be.hasNoBees()) {
-            player.sendMessage(genTextEmpty(pos));
+            player.sendMessage(genTextEmpty(pos), false);
             return;
         }
-        player.sendMessage(getBeesInfo(pos, be));
+        player.sendMessage(getBeesInfo(pos, be), false);
     }
 
     @NotNull
@@ -80,7 +81,7 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
     }
 
     private static MutableText readName(NbtCompound entityData) {
-        MutableText name = Text.literal("").append(EntityType.BEE.getName());
+        MutableText name = new LiteralText("").append(EntityType.BEE.getName());
         if (entityData.contains("CustomName")) {
             name = Text.Serializer.fromJson(entityData.getString("CustomName"));
         }
