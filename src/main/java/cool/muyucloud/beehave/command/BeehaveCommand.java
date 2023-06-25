@@ -32,7 +32,7 @@ public class BeehaveCommand {
                 .append(CONFIG.getAsString(key))
                 .append(" ");
         }
-        source.sendFeedback(() -> text, false);
+        source.sendFeedback(text, false);
         return 1;
     }
 
