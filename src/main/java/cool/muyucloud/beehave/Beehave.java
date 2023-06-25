@@ -4,7 +4,7 @@ import cool.muyucloud.beehave.command.BeehaveCommand;
 import cool.muyucloud.beehave.config.Config;
 import cool.muyucloud.beehave.util.TranslatorManager;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.item.Item;
@@ -30,7 +30,7 @@ public class Beehave implements ModInitializer {
         VALID_ITEMS.add(Items.AIR);
         LOGGER.info("Registering command");
         Event<CommandRegistrationCallback> event = CommandRegistrationCallback.EVENT;
-        event.register((dispatcher, registryAccess, environment) -> BeehaveCommand.register(dispatcher));
+        event.register((dispatcher, environment) -> BeehaveCommand.register(dispatcher));
         LOGGER.info("Registering lifecycle events");
         ServerLifecycleEvents.SERVER_STARTING.register(server -> CONFIG.load());
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> CONFIG.save());

@@ -104,7 +104,7 @@ public class PropertySubCommand {
     private static int set(ServerCommandSource source, String key, JsonPrimitive value) {
         if (CONFIG.set(key, value))  {
             MutableText text = TRANSLATOR.translate("message.command.beehave.property.set.success", key, value.getAsString());
-            source.sendFeedback(() -> text, false);
+            source.sendFeedback(text, false);
             return 1;
         } else {
             MutableText text = TRANSLATOR.translate("message.command.beehave.property.set.fail", key, value.getAsString());
@@ -117,7 +117,7 @@ public class PropertySubCommand {
         String value = CONFIG.getAsString(key);
         if (value != null) {
             MutableText text = TRANSLATOR.translate("message.command.beehave.property.get.success", key, value);
-            source.sendFeedback(() -> text, false);
+            source.sendFeedback(text, false);
             return 1;
         } else {
             MutableText text = TRANSLATOR.translate("message.command.beehave.property.get.failure", key);

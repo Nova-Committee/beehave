@@ -22,7 +22,7 @@ public class ConfigFileSubCommand {
     private static int load(ServerCommandSource source) {
         if (CONFIG.load()) {
             MutableText text = TRANSLATOR.translate("message.command.beehave.load.success");
-            source.sendFeedback(() -> text, false);
+            source.sendFeedback(text, false);
             return 1;
         } else {
             MutableText text = TRANSLATOR.translate("message.command.beehave.load.fail");
@@ -34,7 +34,7 @@ public class ConfigFileSubCommand {
     private static int save(ServerCommandSource source) {
         if (CONFIG.save()) {
             MutableText text = TRANSLATOR.translate("message.command.beehave.save.success");
-            source.sendFeedback(() -> text, false);
+            source.sendFeedback(text, false);
             return 1;
         } else {
             MutableText text = TRANSLATOR.translate("message.command.beehave.save.fail");
