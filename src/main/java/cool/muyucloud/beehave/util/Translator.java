@@ -3,7 +3,6 @@ package cool.muyucloud.beehave.util;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import cool.muyucloud.beehave.Beehave;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import org.apache.commons.io.IOUtils;
@@ -29,9 +28,9 @@ public class Translator {
 
     public MutableText translate(String key, Object... args) {
         if (mappings.containsKey(key)) {
-            return new LiteralText(String.format(mappings.get(key), args));
+            return Text.literal((mappings.get(key).formatted(args)));
         } else {
-            return new LiteralText(key);
+            return Text.literal(key);
         }
     }
 
@@ -45,11 +44,11 @@ public class Translator {
             json = IOUtils.toString(
                 Objects.requireNonNull(
                     Translator.class.getClassLoader().getResource(
-                        String.format("assets/beehave/lang/%s.json",
-                            this.langName))),
+                        "assets/beehave/lang/%s.json"
+                            .formatted(this.langName))),
                 StandardCharsets.UTF_8);
         } catch (Exception e) {
-            Beehave.LOGGER.error(String.format("target language file %s not present", this.langName));
+            Beehave.LOGGER.error("target language file %s not present".formatted(this.langName));
             this.bad = true;
         }
         return new Gson().fromJson(json, new TypeToken<HashMap<String, String>>() {}.getType());

@@ -32,14 +32,14 @@ public class BeehaveCommand {
                 .append(CONFIG.getAsString(key))
                 .append(" ");
         }
-        source.sendFeedback(text, false);
+        source.sendFeedback(() -> text, false);
         return 1;
     }
 
     private static MutableText getStyledKey(String key) {
-        MutableText info = TRANSLATOR.translate(String.format("message.command.beehave.info.%s", key));
-        String suggest = String.format("/beehave %s ", key);
-        return new LiteralText(key).setStyle(Style.EMPTY.withBold(true).withColor(Formatting.GREEN)
+        MutableText info = TRANSLATOR.translate("message.command.beehave.info.%s".formatted(key));
+        String suggest = "/beehave %s ".formatted(key);
+        return Text.literal(key).setStyle(Style.EMPTY.withBold(true).withColor(Formatting.GREEN)
             .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, suggest))
             .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, info)));
     }

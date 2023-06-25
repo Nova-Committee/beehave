@@ -3,9 +3,8 @@ package cool.muyucloud.beehave.config;
 import com.google.gson.*;
 import cool.muyucloud.beehave.Beehave;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
@@ -15,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Config {
@@ -72,8 +70,7 @@ public class Config {
 
     public Set<String> getProperties() {
         HashSet<String> out = new HashSet<>();
-        for (Map.Entry<String, JsonElement> entry : this.content.entrySet()) {
-            String key = entry.getKey();
+        for (String key : this.content.keySet()) {
             if (this.content.get(key).isJsonArray()) {
                 continue;
             }
@@ -84,7 +81,7 @@ public class Config {
 
     public Class<? extends Serializable> getType(String key) {
         if (!this.content.has(key)) {
-            throw new NullPointerException(String.format("Tried to access property %s but it does not exists!", key));
+            throw new NullPointerException("Tried to access property %s but it does not exists!".formatted(key));
         }
         JsonPrimitive primitive = this.content.getAsJsonPrimitive(key);
         if (primitive.isBoolean()) {
@@ -142,7 +139,7 @@ public class Config {
             try {
                 Files.createFile(CONFIG_PATH);
             } catch (Exception e) {
-                LOGGER.error(String.format("Failed to generate config file at %s.", CONFIG_PATH));
+                LOGGER.error("Failed to generate config file at %s.".formatted(CONFIG_PATH));
                 e.printStackTrace();
                 return false;
             }
@@ -153,7 +150,7 @@ public class Config {
     private void readFile() {
         try (InputStream stream = Files.newInputStream(CONFIG_PATH)) {
             JsonObject object = (new Gson()).fromJson(
-                IOUtils.toString(stream, StandardCharsets.UTF_8),
+                new String(stream.readAllBytes(), StandardCharsets.UTF_8),
                 JsonObject.class
             );
             this.readConfig(object);
@@ -171,8 +168,7 @@ public class Config {
     }
 
     private void readProperties(JsonObject object) {
-        for (Map.Entry<String, JsonElement> entry : object.entrySet()) {
-            String key = entry.getKey();
+        for (String key : object.keySet()) {
             if (this.content.has(key)) {
                 JsonPrimitive dst = this.content.getAsJsonPrimitive(key);
                 JsonPrimitive src = object.getAsJsonPrimitive(key);
@@ -195,7 +191,7 @@ public class Config {
         JsonArray src = object.getAsJsonArray(key);
         for (JsonElement element : src) {
             Identifier id = new Identifier(element.getAsString());
-            if (Registry.ITEM.containsId(id)) {
+            if (Registries.ITEM.containsId(id)) {
                 dst.add(id.toString());
             }
         }
