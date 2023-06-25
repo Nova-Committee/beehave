@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import cool.muyucloud.beehave.Beehave;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
 import org.apache.commons.io.IOUtils;
 
 import java.nio.charset.StandardCharsets;

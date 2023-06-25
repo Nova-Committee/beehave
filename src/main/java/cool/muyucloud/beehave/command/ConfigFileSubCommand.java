@@ -17,6 +17,8 @@ public class ConfigFileSubCommand {
         nodeLoad.executes(context -> load(context.getSource()));
         LiteralArgumentBuilder<ServerCommandSource> nodeSave = CommandManager.literal("save");
         nodeSave.executes(context -> save(context.getSource()));
+//        parent.then(nodeLoad);
+//        parent.then(nodeSave);
     }
 
     private static int load(ServerCommandSource source) {
