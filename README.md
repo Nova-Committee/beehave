@@ -6,7 +6,7 @@ For Fabric version, [Fabric API](https://modrinth.com/mod/fabric-api) is require
 
 For forge version, view [other branches](https://github.com/Nova-Committee/beehave/branches) maintained by [MikhailTapio](https://github.com/MikhailTapio)
 
-Recommend to use along with [MoreBeeInfo](https://modrinth.com/mod/morebeeinfo).
+Recommended to use along with [MoreBeeInfo](https://modrinth.com/mod/morebeeinfo).
 
 Thank [strrraicato_](https://space.bilibili.com/314823790) for the name "Beehave" provided by them.
 
@@ -27,6 +27,5 @@ All the operations above will be automatically filtered
 if the player is holding items that got other functions.
 
 ## Plans
-
-- Add a interface to control a whitelist that limits the items held by players to display the information
+- Add a blacklist & whitelist that limits the items held by players to display the information
 - More language support
