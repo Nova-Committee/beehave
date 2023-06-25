@@ -12,7 +12,7 @@ Recommend to use along with [MoreBeeInfo](https://modrinth.com/mod/morebeeinfo).
   bees' information will be printed into chat HUD.
   Including: bees' count, is a bee adult or baby,
   how many ticks has a bee stayed in the hive,
-  and how many ticks in total need to be occupied before leave the hive.
+  and how many ticks in total need to be occupied before leaving the hive.
   ![](https://cdn-raw.modrinth.com/data/e0YVwkW5/images/49bcad6da7d3c05e070e416c277e14982ad54a61.png)
 - Right-click on a bee entity, bee's information will be printed into chat HUD.
   If the bee got a hive to enter, position of the hive will be displayed;
