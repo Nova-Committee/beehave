@@ -117,20 +117,50 @@ public class Config {
         if (!this.content.has(key)) {
             return false;
         }
-
         JsonPrimitive dst = this.content.getAsJsonPrimitive(key);
-        if (value.isNumber() && !dst.isNumber()) {
-            return false;
-        } else if (value.isBoolean() && !dst.isBoolean()) {
-            return false;
-        } else if (value.isString() && !dst.isString()) {
+        if (!typeMatch(dst, value)) {
             return false;
         }
-
         this.content.add(key, value);
         return true;
     }
 
+    public boolean arrayContains(String key, JsonPrimitive value) {
+        if (!arrayMatch(key, value)) {
+            return false;
+        }
+        JsonArray array = this.content.getAsJsonArray(key);
+        return array.contains(value);
+    }
+
+    private boolean arrayMatch(String key, JsonPrimitive value) {
+        JsonPrimitive primitive = this.content.get(key).getAsJsonPrimitive();
+        if (!primitive.isJsonArray()) {
+            return false;
+        }
+        JsonArray array = primitive.getAsJsonArray();
+        JsonPrimitive sample = array.get(0).getAsJsonPrimitive();
+        return typeMatch(sample, value);
+    }
+
+    public void arrayAdd(String key, JsonPrimitive value) {
+        if (!arrayMatch(key, value)) {
+            return;
+        }
+
+    }
+
+    private static boolean typeMatch(JsonPrimitive a, JsonPrimitive b) {
+        if (a.isNumber()) {
+            return b.isNumber();
+        } else if (a.isBoolean()) {
+            return b.isBoolean();
+        } else if (a.isString()) {
+            return b.isString();
+        } else {
+            return false;
+        }
+    }
 
     private static boolean tryDeployFile() {
         if (!Files.exists(CONFIG_PATH)) {

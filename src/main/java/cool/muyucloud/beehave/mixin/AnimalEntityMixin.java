@@ -8,6 +8,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -29,13 +30,13 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
     }
 
     @Inject(method = "interactMob", at = @At("RETURN"))
-    public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         boolean enable = CONFIG.getAsBoolean("bee");
         if (!enable) {
             return;
         }
-        boolean holdBreedingItem = ((AnimalEntity) (Object) this).isBreedingItem(player.getStackInHand(hand));
-        if (this.getWorld().isClient || hand.equals(Hand.OFF_HAND) || holdBreedingItem) {
+        Item holding = player.getStackInHand(hand).getItem();
+        if (this.getWorld().isClient || hand.equals(Hand.OFF_HAND)) {
             return;
         }
         if (!(((AnimalEntity) (Object) this) instanceof BeeEntity entity)) {

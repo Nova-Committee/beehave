@@ -1,6 +1,7 @@
 package cool.muyucloud.beehave.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import cool.muyucloud.beehave.Beehave;
 import cool.muyucloud.beehave.config.Config;
@@ -15,6 +16,7 @@ public class BeehaveCommand {
     private static final TranslatorManager TRANSLATOR = Beehave.TRANSLATOR;
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        ArgumentBuilder<?, ?> builder;
         LiteralArgumentBuilder<ServerCommandSource> root = CommandManager.literal("beehave");
         root.requires(serverCommandSource -> serverCommandSource.hasPermissionLevel(2));
         root.executes(context -> showAll(context.getSource()));
@@ -37,6 +39,7 @@ public class BeehaveCommand {
     }
 
     private static MutableText getStyledKey(String key) {
+        String.format("message.command.beehave.info.%s", key);
         MutableText info = TRANSLATOR.translate("message.command.beehave.info.%s".formatted(key));
         String suggest = "/beehave %s ".formatted(key);
         return Text.literal(key).setStyle(Style.EMPTY.withBold(true).withColor(Formatting.GREEN)
