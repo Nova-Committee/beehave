@@ -10,7 +10,7 @@
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/beehave/icon.png",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
     "client": [
     ],
