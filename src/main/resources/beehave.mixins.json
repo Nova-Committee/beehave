@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AnimalEntityMixin",
-    "BeeEntityAccessor",
+    "BeeEntityMixin",
     "BeehiveBlockMixin"
   ],
   "client": [],
