@@ -1,5 +1,6 @@
 package cool.muyucloud.beehave.mixin;
 
+import cool.muyucloud.beehave.access.BeeEntityAccess;
 import cool.muyucloud.beehave.util.TranslatorManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -52,6 +53,6 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
 
     private static boolean hiveAvailable(BeeEntity entity) {
         return entity.hasHive() &&
-            ((BeeEntityAccessor) entity).invokeDoesHiveHaveSpace(entity.getHivePos());
+            ((BeeEntityAccess) entity).invokeDoesHiveHaveSpace(entity.getHivePos());
     }
 }

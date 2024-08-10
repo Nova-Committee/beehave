@@ -1,7 +1,0 @@
-{
-    "message.chat.beehive.empty": "No bee in [x=%d, y=%d, z=%d]",
-    "message.chat.beehive.title": "%d bee(s) in [x=%d, y=%d, z=%d]",
-    "message.chat.beehive.row": "is %s, hived %d tick(s), occupation %d tick(s)",
-    "message.chat.bee.info": "Hive at [x=%d, y=%d, z=%d]",
-    "message.chat.bee.homeless": "Homeless"
-}

@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/beehave.main.iml" filepath="$PROJECT_DIR$/.idea/modules/beehave.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/beehave.test.iml" filepath="$PROJECT_DIR$/.idea/modules/beehave.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cool.muyucloud.beehave.main.iml" filepath="$PROJECT_DIR$/.idea/modules/cool.muyucloud.beehave.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cool.muyucloud.beehave.test.iml" filepath="$PROJECT_DIR$/.idea/modules/cool.muyucloud.beehave.test.iml" />
     </modules>
   </component>
 </project>
