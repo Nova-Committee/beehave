@@ -14,8 +14,10 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -75,8 +77,12 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
             "baby" : "adult";
         int ticksInHive = compound.getInt("TicksInHive");
         int minOccupationTicks = compound.getInt("MinOccupationTicks");
-        return text.append(TRANSLATOR.translate("message.chat.beehive.row",
+        text.append(TRANSLATOR.translate("message.chat.beehive.row",
             isBaby, ticksInHive, minOccupationTicks));
+        if (ticksInHive >= minOccupationTicks) {
+            text.setStyle(Style.EMPTY.withColor(Formatting.GOLD));
+        }
+        return text;
     }
 
     private static MutableText readName(NbtCompound entityData) {
