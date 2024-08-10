@@ -16,8 +16,10 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -71,10 +73,14 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
     private static MutableText getBeeInfo(NbtCompound compound) {
         MutableText text = Text.literal("").append(EntityType.BEE.getName()).append(": ");
         String isBaby = ((NbtCompound) Objects.requireNonNull(compound.get("EntityData"))).getInt("Age") < 0 ?
-            "baby" : "adult";
+                "baby" : "adult";
         int ticksInHive = compound.getInt("TicksInHive");
         int minOccupationTicks = compound.getInt("MinOccupationTicks");
-        return text.append(TRANSLATOR.translate("message.chat.beehive.row", isBaby, ticksInHive, minOccupationTicks));
+        text.append(TRANSLATOR.translate("message.chat.beehive.row", isBaby, ticksInHive, minOccupationTicks));
+        if (ticksInHive >= minOccupationTicks) {
+            text.setStyle(Style.EMPTY.withColor(Formatting.GOLD));
+        }
+        return text;
     }
 
     private static Text genTextEmpty(BlockPos pos) {
@@ -82,11 +88,11 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
     }
 
     private static boolean itemInvalid(ItemStack stack) {
-        for (Item item : Beehave.INVALID_ITEMS) {
+        for (Item item : Beehave.VALID_ITEMS) {
             if (!stack.isOf(item)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
