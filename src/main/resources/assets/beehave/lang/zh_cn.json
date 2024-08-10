@@ -1,7 +1,7 @@
 {
     "message.chat.beehive.empty": "位于 [x=%d, y=%d, z=%d] 的蜂巢没有蜜蜂",
     "message.chat.beehive.title": "%d 只蜜蜂在位于 [x=%d, y=%d, z=%d] 的蜂巢中",
-    "message.chat.beehive.row": "年龄 %s, 已归巢 %d %d tick(s)",
+    "message.chat.beehive.row": "年龄 %s, 已归巢 %d / %d tick(s)",
     "message.chat.bee.info": "蜂巢在 [x=%d, y=%d, z=%d]",
     "message.chat.bee.homeless": "没有可进入的蜂巢",
     "message.command.beehave.title": "Beehave 设置概览",

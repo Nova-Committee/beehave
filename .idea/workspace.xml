@@ -5,84 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a81f941-b5af-468e-b30a-be5d198d1dd6" name="Changes" comment="Port to 21&#10;Add particles showing directions for a bee's hive&#10;Improvements in texts color of beehive info.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/command/BeehaveCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/command/ConfigFileSubCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/command/PropertySubCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/config/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/beehave/lang/zh_cn.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/beehave.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/beehave.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/beehave.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/beehave.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Client.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Client.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/config/fabric/indigo-renderer.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/crash-reports/crash-2023-06-22_23.50.36-client.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/crash-reports/crash-2023-06-23_11.47.06-client.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/data/fabricDefaultResourcePacks.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-22-1.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-22-2.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-22-3.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-22-4.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-22-5.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-22-6.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-22-7.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-23-1.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-23-2.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-23-3.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-23-4.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-23-5.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-23-6.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/2023-06-23-7.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-1.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-2.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-3.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-4.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-5.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/latest.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/options.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/DIM-1/data/raids.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/DIM1/data/raids_end.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/advancements/8283e0bd-2b98-3dc5-bfb9-f83595e8b666.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/data/raids.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/data/random_sequences.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/entities/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/entities/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/entities/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/entities/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/level.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/level.dat_old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/playerdata/8283e0bd-2b98-3dc5-bfb9-f83595e8b666.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/playerdata/8283e0bd-2b98-3dc5-bfb9-f83595e8b666.dat_old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.-1.-2.mca" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/beehave/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.-2.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.-2.-2.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.-2.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.0.-2.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/poi/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.-1.-2.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.-2.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.-2.-2.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.-2.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.0.-2.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/region/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/session.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/saves/New World/stats/8283e0bd-2b98-3dc5-bfb9-f83595e8b666.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/servers.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/servers.dat_old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/usercache.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/Beehave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/Beehave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/access/BeeEntityAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/access/BeeEntityAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/mixin/AnimalEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/mixin/AnimalEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/mixin/BeeEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/mixin/BeeEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/mixin/BeehiveBlockMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cool/muyucloud/beehave/mixin/BeehiveBlockMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/beehave/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/beehave/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/beehave/lang/zh_cn.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/beehave/lang/zh_cn.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +115,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Minecraft Client">
+  <component name="RunManager" selected="Gradle.beehave [assemble]">
     <configuration name="beehave [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -331,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723248786154</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Port to 21&#10;Add particles showing directions for a bee's hive&#10;Improvements in texts color of beehive info.&#10;Add command and config">
+      <option name="closed" value="true" />
+      <created>1723253890596</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1723253890596</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -352,6 +287,7 @@
     <MESSAGE value="update README.md" />
     <MESSAGE value="Fix environment variable" />
     <MESSAGE value="Port to 21&#10;Add particles showing directions for a bee's hive&#10;Improvements in texts color of beehive info." />
-    <option name="LAST_COMMIT_MESSAGE" value="Port to 21&#10;Add particles showing directions for a bee's hive&#10;Improvements in texts color of beehive info." />
+    <MESSAGE value="Port to 21&#10;Add particles showing directions for a bee's hive&#10;Improvements in texts color of beehive info.&#10;Add command and config" />
+    <option name="LAST_COMMIT_MESSAGE" value="Port to 21&#10;Add particles showing directions for a bee's hive&#10;Improvements in texts color of beehive info.&#10;Add command and config" />
   </component>
 </project>
