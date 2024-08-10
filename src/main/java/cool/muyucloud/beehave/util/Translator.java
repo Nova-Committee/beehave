@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Translator {
-
     private final String langName;
     private final HashMap<String, String> mappings;
     private boolean bad = false;

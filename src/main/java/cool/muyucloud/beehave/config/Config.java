@@ -190,7 +190,7 @@ public class Config {
         JsonArray dst = this.content.getAsJsonArray(key);
         JsonArray src = object.getAsJsonArray(key);
         for (JsonElement element : src) {
-            Identifier id = new Identifier(element.getAsString());
+            Identifier id = Identifier.of(element.getAsString());
             if (Registries.ITEM.containsId(id)) {
                 dst.add(id.toString());
             }

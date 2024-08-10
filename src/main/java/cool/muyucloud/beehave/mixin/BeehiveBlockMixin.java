@@ -1,35 +1,49 @@
 package cool.muyucloud.beehave.mixin;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.MapDecoder;
 import cool.muyucloud.beehave.Beehave;
+import cool.muyucloud.beehave.access.BeehiveBlockEntityAccess;
 import cool.muyucloud.beehave.config.Config;
 import cool.muyucloud.beehave.util.TranslatorManager;
 import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BeehiveBlockEntity;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.List;
 import java.util.Objects;
 
 @Mixin(BeehiveBlock.class)
 public abstract class BeehiveBlockMixin extends BlockWithEntity {
+    @Shadow @Final public static MapCodec<BeehiveBlock> CODEC;
     private static final TranslatorManager TRANSLATOR = Beehave.TRANSLATOR;
     private static final Config CONFIG = Beehave.CONFIG;
 
@@ -37,8 +51,8 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
         super(settings);
     }
 
-    @Inject(method = "onUse", at = @At("HEAD"))
-    private void onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+    @Inject(method = "onUseWithItem", at = @At("HEAD"))
+    private void onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ItemActionResult> cir) {
         boolean enable = CONFIG.getAsBoolean("beehive");
         if (world.isClient || hand.equals(Hand.OFF_HAND) || !enable) {
             return;
@@ -57,32 +71,35 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
 
     @NotNull
     private static MutableText getBeesInfo(BlockPos pos, BeehiveBlockEntity be) {
-        NbtList bees = be.getBees();
+        List<BeehiveBlockEntity.BeeData> bees = ((BeehiveBlockEntityAccess) be).invokeCreateBeeData();
         MutableText text = TRANSLATOR.translate("message.chat.beehive.title",
                 be.getBeeCount(), pos.getX(), pos.getY(), pos.getZ());
-        for (NbtElement element : bees) {
+        for (BeehiveBlockEntity.BeeData element : bees) {
             text.append("\n");
-            NbtCompound compound = (NbtCompound) element;
-            text.append(getBeeInfo(compound));
+            text.append(getBeeInfo(element));
         }
         return text;
     }
 
-    private static MutableText getBeeInfo(NbtCompound compound) {
-        NbtCompound entityData = compound.getCompound("EntityData");
+    private static MutableText getBeeInfo(BeehiveBlockEntity.BeeData beeData) {
+        NbtComponent entityData = beeData.entityData();
         MutableText text = readName(entityData).append(": ");
-        String isBaby = Objects.requireNonNull(entityData).getInt("Age") < 0 ?
+        String isBaby = entityData.get(Codec.INT.fieldOf("Age")).getOrThrow() < 0 ?
             "baby" : "adult";
-        int ticksInHive = compound.getInt("TicksInHive");
-        int minOccupationTicks = compound.getInt("MinOccupationTicks");
-        return text.append(TRANSLATOR.translate("message.chat.beehive.row",
+        int ticksInHive = beeData.ticksInHive();
+        int minOccupationTicks = beeData.minTicksInHive();
+        text.append(TRANSLATOR.translate("message.chat.beehive.row",
             isBaby, ticksInHive, minOccupationTicks));
+        if (ticksInHive >= minOccupationTicks) {
+            text.withColor(Formatting.GOLD.getColorValue());
+        }
+        return text;
     }
 
-    private static MutableText readName(NbtCompound entityData) {
+    private static MutableText readName(NbtComponent entityData) {
         MutableText name = Text.literal("").append(EntityType.BEE.getName());
         if (entityData.contains("CustomName")) {
-            name = Text.Serializer.fromJson(entityData.getString("CustomName"));
+            name = Text.literal(Objects.requireNonNull(entityData.get(Codec.STRING.fieldOf("CustomName")).getOrThrow()));
         }
         return name;
     }
