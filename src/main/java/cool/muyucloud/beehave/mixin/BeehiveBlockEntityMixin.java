@@ -13,7 +13,6 @@ public abstract class BeehiveBlockEntityMixin implements BeehiveBlockEntityAcces
 
     @Override
     public List<BeehiveBlockEntity.BeeData> invokeCreateBeeData() {
-        List<BeehiveBlockEntity.BeeData> list = createBeesData();
-        return list;
+        return createBeesData();
     }
 }

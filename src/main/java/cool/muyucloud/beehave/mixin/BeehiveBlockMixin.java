@@ -1,9 +1,7 @@
 package cool.muyucloud.beehave.mixin;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.MapDecoder;
 import cool.muyucloud.beehave.Beehave;
 import cool.muyucloud.beehave.access.BeehiveBlockEntityAccess;
 import cool.muyucloud.beehave.config.Config;
@@ -12,21 +10,15 @@ import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BeehiveBlockEntity;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -34,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -44,7 +37,9 @@ import java.util.Objects;
 @Mixin(BeehiveBlock.class)
 public abstract class BeehiveBlockMixin extends BlockWithEntity {
     @Shadow @Final public static MapCodec<BeehiveBlock> CODEC;
+    @Unique
     private static final TranslatorManager TRANSLATOR = Beehave.TRANSLATOR;
+    @Unique
     private static final Config CONFIG = Beehave.CONFIG;
 
     protected BeehiveBlockMixin(Settings settings) {
@@ -52,7 +47,7 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
     }
 
     @Inject(method = "onUseWithItem", at = @At("HEAD"))
-    private void onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ItemActionResult> cir) {
+    private void onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
         boolean enable = CONFIG.getAsBoolean("beehive");
         if (world.isClient || hand.equals(Hand.OFF_HAND) || !enable) {
             return;
@@ -63,10 +58,10 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
         }
         BeehiveBlockEntity be = (BeehiveBlockEntity) world.getBlockEntity(pos);
         if (be == null || be.hasNoBees()) {
-            player.sendMessage(genTextEmpty(pos));
+            player.sendMessage(genTextEmpty(pos), false);
             return;
         }
-        player.sendMessage(getBeesInfo(pos, be));
+        player.sendMessage(getBeesInfo(pos, be), false);
     }
 
     @NotNull
@@ -91,7 +86,7 @@ public abstract class BeehiveBlockMixin extends BlockWithEntity {
         text.append(TRANSLATOR.translate("message.chat.beehive.row",
             isBaby, ticksInHive, minOccupationTicks));
         if (ticksInHive >= minOccupationTicks) {
-            text.withColor(Formatting.GOLD.getColorValue());
+            text.formatted(Formatting.GOLD);
         }
         return text;
     }

@@ -83,7 +83,7 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
     }
 
     private static boolean hiveAvailable(BeeEntity entity) {
-        return entity.hasHive() &&
+        return entity.hasHivePos() &&
             ((BeeEntityAccess) entity).invokeDoesHiveHaveSpace(entity.getHivePos());
     }
 }
