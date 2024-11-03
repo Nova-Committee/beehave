@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "cool.muyucloud.beehave.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "AnimalEntityMixin",
+    "BeeEntityMixin",
+    "BeehiveBlockEntityMixin",
+    "BeehiveBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

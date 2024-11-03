@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "beehave",
+  "version": "${version}",
+  "name": "beehave",
+  "description": "",
+  "authors": [
+    "MUYU_Twilighter"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/beehave/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "cool.muyucloud.beehave.fabric.BeehaveFabric"
+    ],
+    "client": [
+      "cool.muyucloud.beehave.fabric.client.BeehaveFabricClient"
+    ]
+  },
+  "mixins": [
+    "beehave.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21.3",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

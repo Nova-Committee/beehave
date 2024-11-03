@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "beehave"
+version = "${version}"
+displayName = "beehave"
+authors = "MUYU_Twilighter"
+description = '''
+
+'''
+#logoFile = ""
+
+[[dependencies.beehave]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.beehave]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.3,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "beehave.mixins.json"
