@@ -49,7 +49,7 @@ public abstract class BeehiveBlockMixin extends BaseEntityBlock {
             return;
         }
         ItemStack itemStack = player.getItemInHand(hand);
-        if (beehave$itemInvalid(itemStack)) {
+        if (beehave$handValid(itemStack)) {
             return;
         }
         BeehiveBlockEntity be = (BeehiveBlockEntity) world.getBlockEntity(pos);
@@ -104,7 +104,7 @@ public abstract class BeehiveBlockMixin extends BaseEntityBlock {
     }
 
     @Unique
-    private static boolean beehave$itemInvalid(ItemStack stack) {
+    private static boolean beehave$handValid(ItemStack stack) {
         return !Beehave.VALID_ITEMS.contains(stack.getItem());
     }
 }

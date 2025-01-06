@@ -68,7 +68,7 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         int count = (int) (distance * density);
         Vec3 pos = beePos;
         for (int i = 0; i <= count; ++i) {
-            ((ServerLevel) this.level()).sendParticles(target, ParticleTypes.HAPPY_VILLAGER, false, pos.x(), pos.y(), pos.z(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+            ((ServerLevel) this.level()).sendParticles(ParticleTypes.HAPPY_VILLAGER, pos.x(), pos.y(), pos.z(), 0, 0.0D, 0.0D, 0.0D, 0.0D);
             pos = pos.add(step);
         }
     }
@@ -78,8 +78,7 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         MutableComponent text = Component.literal("").append(entity.getName()).append(": ");
         if (entity.getHivePos() != null && beehave$hiveAvailable(entity)) {
             BlockPos pos = entity.getHivePos();
-            text.append(beehave$TRANSLATOR.translate(
-                "message.chat.bee.info", pos.getX(), pos.getY(), pos.getZ()));
+            text.append(beehave$TRANSLATOR.translate("message.chat.bee.info", pos.getX(), pos.getY(), pos.getZ()));
         } else {
             text.append(beehave$TRANSLATOR.translate("message.chat.bee.homeless"));
         }
@@ -88,7 +87,6 @@ public abstract class AnimalEntityMixin extends AgeableMob {
 
     @Unique
     private static boolean beehave$hiveAvailable(Bee entity) {
-        return entity.hasHive() &&
-            ((BeeEntityAccess) entity).beehave$invokeDoesHiveHaveSpace(entity.getHivePos());
+        return entity.hasHive() && ((BeeEntityAccess) entity).beehave$invokeDoesHiveHaveSpace(entity.getHivePos());
     }
 }
