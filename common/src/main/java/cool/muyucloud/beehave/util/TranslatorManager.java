@@ -3,9 +3,10 @@ package cool.muyucloud.beehave.util;
 import com.google.gson.JsonPrimitive;
 import cool.muyucloud.beehave.Beehave;
 import cool.muyucloud.beehave.config.Config;
+import net.minecraft.network.chat.MutableComponent;
+
 import java.util.HashMap;
 import java.util.Objects;
-import net.minecraft.network.chat.MutableComponent;
 
 public class TranslatorManager {
     public static final Config CONFIG = Beehave.CONFIG;

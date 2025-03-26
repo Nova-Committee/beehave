@@ -189,7 +189,7 @@ public class Config {
         JsonArray dst = this.content.getAsJsonArray(key);
         JsonArray src = object.getAsJsonArray(key);
         for (JsonElement element : src) {
-            ResourceLocation id = ResourceLocation.parse(element.getAsString());
+            ResourceLocation id = ResourceLocation.tryParse(element.getAsString());
             if (BuiltInRegistries.ITEM.containsKey(id)) {
                 dst.add(id.toString());
             }

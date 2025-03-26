@@ -10,7 +10,7 @@
   "contact": {
     "homepage": ""
   },
-  "license": "All-Rights-Reserved",
+  "license": "MIT",
   "icon": "assets/beehave/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -25,12 +25,9 @@
     "beehave.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16.9",
-    "minecraft": "~1.21.3",
-    "java": ">=21",
+    "fabricloader": "*",
+    "minecraft": "~1.20",
+    "java": "*",
     "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
