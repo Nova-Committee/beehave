@@ -9,7 +9,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
@@ -19,7 +18,6 @@ import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -45,18 +43,18 @@ public abstract class AnimalEntityMixin extends AgeableMob {
             return;
         }
         boolean holdBreedingItem = ((Animal) (Object) this).isFood(player.getItemInHand(hand));
-        if (this.level().isClientSide || hand.equals(InteractionHand.OFF_HAND) || holdBreedingItem) {
+        if (this.level().isClientSide() || hand.equals(InteractionHand.OFF_HAND) || holdBreedingItem) {
             return;
         }
         if (((Animal) (Object) this) instanceof Bee entity) {
             MutableComponent beeInfo = beehave$getBeeInfo(entity);
             player.displayClientMessage(beeInfo, false);
-            beehave$playParticles(entity.getHivePos(), (ServerPlayer) player);
+            beehave$playParticles(entity.getHivePos());
         }
     }
 
     @Unique
-    private void beehave$playParticles(@Nullable BlockPos hivePos, @NotNull ServerPlayer target) {
+    private void beehave$playParticles(@Nullable BlockPos hivePos) {
         final int density = 3;
         Vec3 beePos = this.position();
         if (!beehave$hiveAvailable((Bee) (Object) this)) {

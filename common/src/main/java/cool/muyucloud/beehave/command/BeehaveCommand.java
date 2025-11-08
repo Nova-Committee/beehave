@@ -8,11 +8,7 @@ import cool.muyucloud.beehave.util.TranslatorManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.*;
 
 public class BeehaveCommand {
     private static final Config CONFIG = Beehave.CONFIG;
@@ -44,7 +40,7 @@ public class BeehaveCommand {
         MutableComponent info = TRANSLATOR.translate("message.command.beehave.info.%s".formatted(key));
         String suggest = "/beehave %s ".formatted(key);
         return Component.literal(key).setStyle(Style.EMPTY.withBold(true).withColor(ChatFormatting.GREEN)
-            .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, suggest))
-            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, info)));
+            .withClickEvent(new ClickEvent.SuggestCommand(suggest))
+            .withHoverEvent(new HoverEvent.ShowText(info)));
     }
 }

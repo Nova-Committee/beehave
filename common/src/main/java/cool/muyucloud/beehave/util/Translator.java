@@ -3,13 +3,13 @@ package cool.muyucloud.beehave.util;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import cool.muyucloud.beehave.Beehave;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import org.apache.commons.io.IOUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Objects;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 
 public class Translator {
     private final String langName;

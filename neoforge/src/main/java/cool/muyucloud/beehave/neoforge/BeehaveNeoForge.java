@@ -8,7 +8,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
-import net.neoforged.neoforge.server.command.NeoForgeCommand;
 
 @Mod(Beehave.MOD_ID)
 public final class BeehaveNeoForge {

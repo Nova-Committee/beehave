@@ -11,12 +11,12 @@ import com.mojang.brigadier.context.CommandContext;
 import cool.muyucloud.beehave.Beehave;
 import cool.muyucloud.beehave.config.Config;
 import cool.muyucloud.beehave.util.TranslatorManager;
-import org.jetbrains.annotations.NotNull;
-
-import java.io.Serializable;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.MutableComponent;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Serializable;
 
 public class PropertySubCommand {
     private static final Config CONFIG = Beehave.CONFIG;
