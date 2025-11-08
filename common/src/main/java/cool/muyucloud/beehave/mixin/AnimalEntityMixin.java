@@ -40,10 +40,10 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         return (Animal) (Object) this;
     }
 
-    @Unique
-    private static AnimalEntityMixin beehave$of(Animal entity) {
-        return (AnimalEntityMixin) (Object) entity;
-    }
+//    @Unique
+//    private static AnimalEntityMixin beehave$of(Animal entity) {
+//        return (AnimalEntityMixin) (Object) entity;
+//    }
 
     @Inject(method = "mobInteract", at = @At("RETURN"))
     public void interactMob(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
@@ -84,7 +84,7 @@ public abstract class AnimalEntityMixin extends AgeableMob {
     @Unique
     private static MutableComponent beehave$getBeeInfo(Bee entity) {
         MutableComponent text = Component.literal("").append(entity.getName()).append(": ");
-        if (entity.getHivePos() != null && beehave$of(entity).beehave$hiveAvailable()) {
+        if (entity.getHivePos() != null && ((AnimalEntityMixin) (Object) entity).beehave$hiveAvailable()) {
             BlockPos pos = entity.getHivePos();
             text.append(beehave$TRANSLATOR.translate("message.chat.bee.info", pos.getX(), pos.getY(), pos.getZ()));
         } else {
