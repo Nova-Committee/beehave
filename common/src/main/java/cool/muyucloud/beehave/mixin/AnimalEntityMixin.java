@@ -18,7 +18,6 @@ import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -36,6 +35,16 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         super(entityType, world);
     }
 
+    @Unique
+    public Animal beehave$adapt() {
+        return (Animal) (Object) this;
+    }
+
+    @Unique
+    private static AnimalEntityMixin beehave$of(Animal entity) {
+        return (AnimalEntityMixin) (Object) entity;
+    }
+
     @Inject(method = "mobInteract", at = @At("RETURN"))
     public void interactMob(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         boolean enable = beehave$CONFIG.getAsBoolean("bee");
@@ -46,20 +55,21 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         if (this.level().isClientSide() || hand.equals(InteractionHand.OFF_HAND) || holdBreedingItem) {
             return;
         }
-        if (((Animal) (Object) this) instanceof Bee entity) {
+        if (this.beehave$adapt() instanceof Bee entity) {
             MutableComponent beeInfo = beehave$getBeeInfo(entity);
             player.displayClientMessage(beeInfo, false);
-            beehave$playParticles(entity.getHivePos());
+            beehave$playParticles();
         }
     }
 
     @Unique
-    private void beehave$playParticles(@Nullable BlockPos hivePos) {
-        final int density = 3;
-        Vec3 beePos = this.position();
-        if (!beehave$hiveAvailable((Bee) (Object) this)) {
+    private void beehave$playParticles() {
+        if (!(this.beehave$adapt() instanceof Bee bee) || bee.getHivePos() == null || !beehave$hiveAvailable()) {
             return;
         }
+        final int density = 3;
+        Vec3 beePos = this.position();
+        BlockPos hivePos = bee.getHivePos();
         Vec3 delta = beePos.vectorTo(hivePos.getCenter());
         double distance = delta.length();
         Vec3 step = delta.multiply(1.0D / (density * distance), 1.0D / (density * distance), 1.0D / (density * distance));
@@ -74,7 +84,7 @@ public abstract class AnimalEntityMixin extends AgeableMob {
     @Unique
     private static MutableComponent beehave$getBeeInfo(Bee entity) {
         MutableComponent text = Component.literal("").append(entity.getName()).append(": ");
-        if (entity.getHivePos() != null && beehave$hiveAvailable(entity)) {
+        if (entity.getHivePos() != null && beehave$of(entity).beehave$hiveAvailable()) {
             BlockPos pos = entity.getHivePos();
             text.append(beehave$TRANSLATOR.translate("message.chat.bee.info", pos.getX(), pos.getY(), pos.getZ()));
         } else {
@@ -84,7 +94,10 @@ public abstract class AnimalEntityMixin extends AgeableMob {
     }
 
     @Unique
-    private static boolean beehave$hiveAvailable(Bee entity) {
-        return entity.hasHive() && ((BeeEntityAccess) entity).beehave$invokeDoesHiveHaveSpace(entity.getHivePos());
+    private boolean beehave$hiveAvailable() {
+        if (!(this.beehave$adapt() instanceof Bee bee)) {
+            return false;
+        }
+        return bee.hasHive() && ((BeeEntityAccess) bee).beehave$invokeDoesHiveHaveSpace(bee.getHivePos());
     }
 }
