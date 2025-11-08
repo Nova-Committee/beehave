@@ -40,11 +40,6 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         return (Animal) (Object) this;
     }
 
-//    @Unique
-//    private static AnimalEntityMixin beehave$of(Animal entity) {
-//        return (AnimalEntityMixin) (Object) entity;
-//    }
-
     @Inject(method = "mobInteract", at = @At("RETURN"))
     public void interactMob(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         boolean enable = beehave$CONFIG.getAsBoolean("bee");
