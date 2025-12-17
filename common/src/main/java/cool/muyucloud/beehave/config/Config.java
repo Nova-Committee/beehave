@@ -3,7 +3,7 @@ package cool.muyucloud.beehave.config;
 import com.google.gson.*;
 import cool.muyucloud.beehave.Beehave;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
@@ -189,7 +189,7 @@ public class Config {
         JsonArray dst = this.content.getAsJsonArray(key);
         JsonArray src = object.getAsJsonArray(key);
         for (JsonElement element : src) {
-            ResourceLocation id = ResourceLocation.parse(element.getAsString());
+            Identifier id = Identifier.parse(element.getAsString());
             if (BuiltInRegistries.ITEM.containsKey(id)) {
                 dst.add(id.toString());
             }

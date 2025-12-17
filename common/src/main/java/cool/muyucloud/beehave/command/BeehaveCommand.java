@@ -9,6 +9,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.permissions.Permission;
+import net.minecraft.server.permissions.PermissionLevel;
 
 public class BeehaveCommand {
     private static final Config CONFIG = Beehave.CONFIG;
@@ -16,7 +18,7 @@ public class BeehaveCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> root = Commands.literal("beehave");
-        root.requires(serverCommandSource -> serverCommandSource.hasPermission(2));
+        root.requires(serverCommandSource -> serverCommandSource.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.MODERATORS)));
         root.executes(context -> showAll(context.getSource()));
         PropertySubCommand.register(root);
         ConfigFileSubCommand.register(root);
