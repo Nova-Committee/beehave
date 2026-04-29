@@ -54,10 +54,10 @@ public abstract class BeehiveBlockMixin extends BaseEntityBlock {
         }
         BeehiveBlockEntity be = (BeehiveBlockEntity) world.getBlockEntity(pos);
         if (be == null || be.isEmpty()) {
-            player.displayClientMessage(beehave$genTextEmpty(pos), false);
+            player.sendSystemMessage(beehave$genTextEmpty(pos));
             return;
         }
-        player.displayClientMessage(beehave$getBeesInfo(pos, be), false);
+        player.sendSystemMessage(beehave$getBeesInfo(pos, be));
     }
 
     @Unique

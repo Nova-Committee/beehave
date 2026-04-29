@@ -1,33 +1,32 @@
 {
-  "schemaVersion": 1,
-  "id": "beehave",
-  "version": "${version}",
-  "name": "beehave",
-  "description": "",
-  "authors": [
-    "MUYU_Twilighter"
-  ],
-  "contact": {
-    "homepage": ""
-  },
-  "license": "All-Rights-Reserved",
-  "icon": "assets/beehave/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "cool.muyucloud.beehave.fabric.BeehaveFabric"
-    ]
-  },
-  "mixins": [
-    "beehave.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.16.9",
-    "minecraft": "~1.21.3",
-    "java": ">=21",
-    "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
-  }
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "https://fabricmc.net/",
+        "sources": "https://github.com/FabricMC/fabric-example-mod"
+    },
+    "license": "${license}",
+    "icon": "icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "cool.muyucloud.beehave.fabric.BeehaveFabric"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": "*",
+        "fabric-api": "*",
+        "minecraft": "~26.1",
+        "java": "*"
+    }
 }
+  

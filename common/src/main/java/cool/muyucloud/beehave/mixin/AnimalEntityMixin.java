@@ -52,7 +52,7 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         }
         if (this.beehave$adapt() instanceof Bee entity) {
             MutableComponent beeInfo = beehave$getBeeInfo(entity);
-            player.displayClientMessage(beeInfo, false);
+            player.sendSystemMessage(beeInfo);
             beehave$playParticles();
         }
     }
