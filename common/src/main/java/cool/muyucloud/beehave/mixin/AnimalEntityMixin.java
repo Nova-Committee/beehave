@@ -65,7 +65,7 @@ public abstract class AnimalEntityMixin extends AgeableMob {
         final int density = 3;
         Vec3 beePos = this.position();
         BlockPos hivePos = bee.getHivePos();
-        Vec3 delta = beePos.vectorTo(hivePos.getCenter());
+        Vec3 delta = beePos.vectorTo(new Vec3(hivePos).add(0.5, 0.5, 0.5));
         double distance = delta.length();
         Vec3 step = delta.multiply(1.0D / (density * distance), 1.0D / (density * distance), 1.0D / (density * distance));
         int count = (int) (distance * density);

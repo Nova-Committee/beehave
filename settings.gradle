@@ -24,4 +24,5 @@ plugins {
 rootProject.name = 'beehave'
 include('common')
 include('fabric')
-include('neoforge')
+// Waiting for neoforge 26.2
+//include('neoforge')
