@@ -86,6 +86,6 @@ tasks.register('curseforge', TaskPublishCurseForge) {
     mainFile.gameVersions = [minecraft_version]
     mainFile.addJavaVersion("Java 25")
     mainFile.addEnvironment("server", "client")
-    mainFile.addModLoader("neoforge")
+    mainFile.addModLoader("fabric")
     mainFile.addRequirement("fabric-api")
 }
